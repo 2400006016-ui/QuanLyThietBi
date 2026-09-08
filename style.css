@@ -1,0 +1,458 @@
+/* ===================================================
+   DESIGN SYSTEM — Quản Lý Mượn Trả Thiết Bị
+   Giao diện Giảng Viên
+   =================================================== */
+
+:root {
+    --navy-900: #0a1f3d;
+    --navy-800: #1a3c6e;
+    --navy-700: #1e4d91;
+    --blue-500:  #3b82f6;
+    --blue-100:  #dbeafe;
+    --blue-50:   #eff6ff;
+
+    --slate-900: #0f172a;
+    --slate-700: #334155;
+    --slate-500: #64748b;
+    --slate-400: #94a3b8;
+    --slate-300: #cbd5e1;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50:  #f8fafc;
+
+    --green-700: #15803d;
+    --green-100: #dcfce7;
+    --amber-700: #b45309;
+    --amber-100: #fef3c7;
+    --red-700:   #b91c1c;
+    --red-100:   #fee2e2;
+    --violet-700:#6d28d9;
+    --violet-100:#ede9fe;
+
+    --shadow-sm: 0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.04);
+    --shadow-md: 0 4px 8px rgba(15,23,42,.08), 0 2px 4px rgba(15,23,42,.04);
+    --radius:    6px;
+}
+
+/* === RESET === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--slate-100);
+    color: var(--slate-700);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===================================================
+   NAVIGATION – GV
+   =================================================== */
+
+.dautrang {
+    background: var(--navy-800);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 14px rgba(10,31,61,.3);
+}
+
+.dautrang-trong {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+
+.dautrang-trong h2 {
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .25px;
+}
+
+.thongtin-nguoidung {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,.68);
+}
+
+.thongtin-nguoidung a {
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    padding: 5px 13px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: var(--radius);
+    font-size: 12.5px;
+    font-weight: 500;
+    transition: background .15s, color .15s, border-color .15s;
+}
+.thongtin-nguoidung a:hover {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    border-color: rgba(255,255,255,.38);
+}
+
+.menu-chinh {
+    display: flex;
+    padding: 0 40px;
+}
+
+.menu-chinh a {
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    padding: 9px 17px;
+    font-size: 13.5px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+}
+.menu-chinh a:hover {
+    color: rgba(255,255,255,.92);
+    border-bottom-color: rgba(255,255,255,.35);
+}
+.menu-chinh a.active {
+    color: #fff;
+    border-bottom-color: #60a5fa;
+    font-weight: 600;
+}
+
+/* ===================================================
+   LAYOUT
+   =================================================== */
+
+.noidung {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 28px 24px;
+}
+
+/* Page title */
+.noidung > h3,
+.page-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy-800);
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--slate-200);
+}
+
+/* ===================================================
+   STAT CARDS
+   =================================================== */
+
+.thongke {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.o {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .18s;
+}
+.o:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Top accent stripe — each card gets a different color */
+.o::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+.o:nth-child(1)::after { background: var(--navy-800); }
+.o:nth-child(2)::after { background: var(--green-700); }
+.o:nth-child(3)::after { background: var(--amber-700); }
+.o:nth-child(4)::after { background: var(--violet-700); }
+
+.o .so {
+    display: block;
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--slate-900);
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin-bottom: 7px;
+}
+.o .nhan {
+    display: block;
+    font-size: 12.5px;
+    color: var(--slate-400);
+    font-weight: 500;
+}
+
+/* ===================================================
+   SEARCH / FILTER BAR
+   =================================================== */
+
+form {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 13px 18px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+form label {
+    font-size: 13px;
+    color: var(--slate-500);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+form input[type="text"],
+form input[type="search"] {
+    flex: 1;
+    min-width: 180px;
+    padding: 7px 12px;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    color: var(--slate-700);
+    background: var(--slate-50);
+    outline: none;
+    font-family: inherit;
+    transition: border-color .15s, box-shadow .15s, background .15s;
+}
+form input[type="text"]:focus,
+form input[type="search"]:focus {
+    border-color: var(--blue-500);
+    background: #fff;
+    box-shadow: 0 0 0 3px var(--blue-100);
+}
+
+form button,
+form input[type="submit"] {
+    padding: 7px 18px;
+    background: var(--navy-800);
+    color: #fff;
+    border: 1px solid var(--navy-800);
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s;
+}
+form button:hover,
+form input[type="submit"]:hover {
+    background: var(--navy-900);
+    border-color: var(--navy-900);
+}
+
+/* ===================================================
+   TABLE
+   =================================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+table thead th {
+    background: var(--slate-50);
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--slate-500);
+    border-bottom: 1px solid var(--slate-200);
+    white-space: nowrap;
+}
+
+table tbody td {
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--slate-700);
+    border-bottom: 1px solid var(--slate-100);
+    vertical-align: middle;
+}
+table tbody tr:last-child td { border-bottom: none; }
+table tbody tr:hover td      { background: var(--blue-50); }
+
+/* Link inside table (e.g., "Xem thiết bị", "Trả đồ") */
+table a {
+    color: var(--navy-800);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 5px 13px;
+    border: 1px solid var(--navy-800);
+    border-radius: var(--radius);
+    display: inline-block;
+    transition: background .15s, color .15s;
+}
+table a:hover {
+    background: var(--navy-800);
+    color: #fff;
+}
+
+/* Empty row */
+.trong-rong td,
+table td.trong-rong {
+    text-align: center;
+    color: var(--slate-400);
+    padding: 38px 16px;
+    font-size: 13px;
+}
+
+/* ===================================================
+   STATUS TAGS
+   =================================================== */
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.tag-ok     { background: var(--green-100);  color: var(--green-700); }
+.tag-cho    { background: var(--amber-100);  color: var(--amber-700); }
+.tag-loi    { background: var(--red-100);    color: var(--red-700);   }
+.tag-info   { background: var(--blue-100);   color: #1d4ed8;          }
+.tag-gray   { background: var(--slate-100);  color: var(--slate-500); }
+
+/* Helper text (e.g. "Hoàn thành") */
+.mo-ta-trang {
+    font-size: 12.5px;
+    color: var(--slate-400);
+}
+
+/* ===================================================
+   NOTIFICATION / MESSAGE PAGE
+   =================================================== */
+
+.form-gui-tin {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+}
+.form-gui-tin h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate-700);
+    margin-bottom: 12px;
+    border: none;
+    padding: 0;
+}
+
+/* Textarea override inside message form */
+.form-gui-tin textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--slate-700);
+    background: var(--slate-50);
+    resize: vertical;
+    min-height: 96px;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color .15s, box-shadow .15s;
+}
+.form-gui-tin textarea:focus {
+    border-color: var(--blue-500);
+    background: #fff;
+    box-shadow: 0 0 0 3px var(--blue-100);
+}
+.form-gui-tin button {
+    padding: 8px 20px;
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s;
+}
+.form-gui-tin button:hover { background: var(--navy-900); }
+
+.section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-800);
+    margin-bottom: 12px;
+}
+
+.danh-sach-tin {
+    list-style: none;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+.danh-sach-tin li {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--slate-100);
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+.danh-sach-tin li:last-child { border-bottom: none; }
+
+.tin-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.tin-ngay {
+    font-size: 12px;
+    color: var(--slate-400);
+    font-weight: 500;
+}
+.tin-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+.chua-doc { background: var(--blue-100);   color: #1d4ed8; }
+.da-doc   { background: var(--slate-100);  color: var(--slate-500); }
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+
+@media (max-width: 900px) {
+    .dautrang-trong { padding: 12px 20px; }
+    .menu-chinh     { padding: 0 20px; overflow-x: auto; white-space: nowrap; }
+    .noidung        { padding: 20px 16px; }
+    .thongke        { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 540px) {
+    .thongke { grid-template-columns: 1fr; }
+    form     { flex-direction: column; align-items: stretch; }
+}
